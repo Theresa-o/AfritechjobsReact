@@ -1,0 +1,68 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Senior ML/ Python Engineer (Open-Source; Core Founding Team)",
+      "company": "SuperDuper inc.",
+      "location": "Fully remote",
+      "contract": "Full-time",
+      "keywords": ["photography", "travel"],
+      "postedDate": "10 Sept",
+      "description": "SuperDuperDB, a solidly funded startup, is looking for an experienced machine learning & Python engineer to join our small team of absolute experts who are building an open-source system to effortlessly integrate AI and databases. SuperDuperDB (which we will launch in the next weeks) is an open-source environment for developers to easily implement next-generation AI models and applications on top of your existing loved data source - from LLMs, and public APIs to custom high-performance in-house machine learning models. It transforms your favourite data store into a vector database, feature store, model repository, performance monitor and end-to-end live AI deployment all at once! SuperDuperDB has the potential to disrupt how AI is developed and implemented - and to become the new standard for doing AI with your data. The position is the opportunity to build SuperDuperDB and its community from the ground up. A past record of work around open-source Python projects in AI/ ML/ Data would be very attractive to us. You can be fully remote, or work at our Berlin office. Salary is competitive incl. stock options and the existing small team is first-class.",
+      "requirements": [
+        "Good understanding of developer and open-source communities",
+        "Knowledge of and experience with popular databases, including SQL-based RDBMS, MongoDB and others",
+        "Knowledge of the scientific Python ecosystem including Pandas, PyTorch, Scikit-Learn, Numpy, Tensorflow etc.",
+        "Proficiency in Python and other relevant languages.",
+        "In-depth experience building and applying AI, machine learning, data science, and MLOps."
+      ],
+      "benefits": [
+        "High-impact work with other highly-talented and skilled team members",
+        "Competitive salary and stock options",
+        "The choice between fully remote work and hybrid"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Frontend Developer",
+      "company": "Tech Solutions",
+      "location": "New York, NY",
+      "contract": "Part-time",
+      "keywords": ["JavaScript", "React", "CSS"],
+      "postedDate": "15 Sept",
+      "description": "Tech Solutions is looking for a part-time frontend developer to join our team. The ideal candidate should have experience with React and CSS. You will be working on various projects, helping us to improve our clients' websites.",
+      "requirements": [
+        "Experience with React",
+        "Strong knowledge of JavaScript and CSS",
+        "Ability to work independently and in a team",
+        "Good communication skills"
+      ],
+      "benefits": [
+        "Flexible working hours",
+        "Opportunity to work on diverse projects",
+        "Friendly team environment"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Backend Developer",
+      "company": "Innovate Tech",
+      "location": "San Francisco, CA",
+      "contract": "Full-time",
+      "keywords": ["Node.js", "Express", "MongoDB"],
+      "postedDate": "12 Sept",
+      "description": "Innovate Tech is seeking a full-time backend developer with experience in Node.js and Express. The role involves developing and maintaining server-side logic, ensuring high performance and responsiveness.",
+      "requirements": [
+        "Strong proficiency with Node.js and Express",
+        "Experience with MongoDB",
+        "Understanding of front-end technologies",
+        "Ability to implement automated testing platforms and unit tests"
+      ],
+      "benefits": [
+        "Competitive salary",
+        "Health benefits",
+        "Professional development opportunities"
+      ]
+    }
+  ]
+}
