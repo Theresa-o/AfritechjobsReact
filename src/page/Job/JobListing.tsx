@@ -47,27 +47,6 @@ const JobListing = () => {
     fetchJob();
   }, []);
 
-  // const fetchJob = async () => {
-  //   try {
-  //     const res = await fetch(`http://localhost:3000/jobs`);
-  //     const data = await res.json();
-  //     const job = data.jobs.find((job: JobProp) => job.id === Number(id));
-  //     if (job) {
-  //       setJob(job);
-  //     } else {
-  //       throw new Error("Job not found");
-  //     }
-  //   } catch (error) {
-  //     console.log("Error", error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchJob();
-  // }, [id]);
-
   return (
     <main className=" bg-slate-200 pb-20 md:px-20">
       <div className="container md:container">
