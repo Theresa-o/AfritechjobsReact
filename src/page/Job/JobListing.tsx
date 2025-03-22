@@ -6,9 +6,67 @@ import LinkedinShare from "../../assets/linkedin-share.svg";
 import FacebookShare from "../../assets/facebook-share.svg";
 import WhatsappShare from "../../assets/whatsapp-share.svg";
 import TwitterShare from "../../assets/twitter-share.svg";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ReactIcon from "../../assets/react.svg";
+import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+
+interface JobProp {
+  id: number;
+  title: string;
+  company: string;
+  location: string;
+  contract: string;
+  keywords: string[];
+  postedDate: string;
+  requirements: string;
+  description: string;
+  benefits: string;
+}
 
 const JobListing = () => {
-  //   const { companyjobtitle } = useParams();
+  const { id } = useParams();
+  const [job, setJob] = useState<JobProp | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchJob = async () => {
+    try {
+      const res = await fetch(`https://teresita.pythonanywhere.com/jobs`);
+      const data = await res.json();
+      const jobData = await data.find((job: any) => job.id === Number(id));
+      console.log(jobData);
+      setJob(jobData);
+    } catch (error) {
+      console.log("Error", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchJob();
+  }, []);
+
+  // const fetchJob = async () => {
+  //   try {
+  //     const res = await fetch(`http://localhost:3000/jobs`);
+  //     const data = await res.json();
+  //     const job = data.jobs.find((job: JobProp) => job.id === Number(id));
+  //     if (job) {
+  //       setJob(job);
+  //     } else {
+  //       throw new Error("Job not found");
+  //     }
+  //   } catch (error) {
+  //     console.log("Error", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchJob();
+  // }, [id]);
 
   return (
     <main className=" bg-slate-200 pb-20 md:px-20">
@@ -88,127 +146,102 @@ const JobListing = () => {
           </div>
           <br />
           <hr />
-
-          <div className="main-job-listing grid lg:grid-cols-12 gap-20 items-start ">
-            <div className="max-w-xs mx-auto sticky grid md:col-span-3 ">
-              <div className="mx-6 mt-10  bg-white shadow-lg rounded-lg">
-                <div className="p-5 mb-10 mx-6">
-                  <div className="mb-5">
-                    <div className="font-bold text-lg">Company</div>
-                    <div className="flex items-center mt-2 space-x-2 text-gray-600">
-                      <img
-                        className="object-cover w-8 h-8 rounded-full ring-1 ring-inset ring-black"
-                        src="/afritechlogo.png"
-                        alt="Afritech Logo"
+          {isLoading ? (
+            <LoadingSpinner isLoading={isLoading} />
+          ) : (
+            <div className="main-job-listing grid lg:grid-cols-12 gap-10 items-start ">
+              <div className="max-w-xs mx-auto sticky grid md:col-span-3 ">
+                <div className="mx-6 mt-10  bg-white shadow-lg rounded-lg">
+                  <div className="p-5 mb-10 mx-6">
+                    <div className="mb-5">
+                      <div className="font-bold text-lg">{job?.company}</div>
+                      <div className="flex items-center mt-2 space-x-2 text-gray-600">
+                        <img
+                          src={ReactIcon}
+                          alt="Afritech Logo"
+                          className="object-cover w-8 h-8 rounded-full ring-1 ring-inset ring-black"
+                        />
+                        <p className="text-sm">{job?.title}</p>
+                      </div>
+                    </div>
+                    <div className="mb-5">
+                      <div className="font-bold text-lg">{job?.location}</div>
+                      <div className="mt-2 text-gray-600">{job?.contract}</div>
+                    </div>
+                    <div className="pt-4 pb-2 flex flex-wrap">
+                      {job?.keywords.map((keyword, index) => (
+                        <span
+                          key={index}
+                          className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                        >
+                          {keyword}
+                        </span>
+                      ))}
+                    </div>
+                    {/* <div className="pt-4 pb-2 flex">
+                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                      <p className="text-gray-600">{job?.keywords}</p>{" "}
+                    </span>
+                    {/* <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                      #travel
+                    </span> */}
+                    {/* </div> */}
+                    <div className="flex justify-center">
+                      <Button
+                        style="bg-indigo-500 text-white px-6 py-2 rounded-full flex justify-center"
+                        onClick={() => console.log("apply")}
+                        text="APPLY"
                       />
-                      <p className="text-sm">SuperDuper inc.</p>
                     </div>
                   </div>
-                  <div className="mb-5">
-                    <div className="font-bold text-lg">Location</div>
-                    <div className="mt-2 text-gray-600">Fully remote</div>
-                  </div>
-                  <div className="pt-4 pb-2 flex">
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                      #photography
-                    </span>
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                      #travel
-                    </span>
-                  </div>
-                  <div className="flex justify-center">
-                    <Button
-                      style="bg-indigo-500 text-white px-6 py-2 rounded-full flex justify-center"
-                      onClick={() => console.log("apply")}
-                      text="APPLY"
-                    />
-                  </div>
-                </div>
-              </div>{" "}
-            </div>
+                </div>{" "}
+              </div>
 
-            <div className="job-details m-5 md:m-10 grid md:col-span-9">
-              <div className="job-title font-bold text-2xl">
-                <h1>
-                  Senior ML/ Python Engineer (Open-Source; Core Founding Team)
-                </h1>
-              </div>
-              <div className="job-description my-6">
-                <div className="jd-intro">
-                  SuperDuperDB, a solidly funded startup, is looking for an
-                  experienced machine learning & Python engineer to join our
-                  small team of absolute experts who are building an open-source
-                  system to effortlessly integrate AI and databases.
-                  <br />
-                  <br />
-                  SuperDuperDB (which we will launch in the next weeks) is an
-                  open-source environment for developers to easily implement
-                  next-generation AI models and applications on top of your
-                  existing loved data source - from LLMs, and public APIs to
-                  custom high-performance in-house machine learning models. It
-                  transforms your favourite data store into a vector database,
-                  feature store, model repository, performance monitor and
-                  end-to-end live AI deployment all at once! SuperDuperDB has
-                  the potential to disrupt how AI is developed and implemented -
-                  and to become the new standard for doing AI with your data.
-                  <br />
-                  <br />
-                  The position is the opportunity to build SuperDuperDB and its
-                  community from the ground up. A past record of work around
-                  open-source Python projects in AI/ ML/ Data would be very
-                  attractive to us. You can be fully remote, or work at our
-                  Berlin office. Salary is competitive incl. stock options and
-                  the existing small team is first-class.
+              <div className="job-details m-5 md:m-10 grid md:col-span-9">
+                <div className="job-title font-bold text-2xl">
+                  <h1>{job?.title} </h1>
                 </div>
-                <div className="jd-requirements my-6">
-                  <div className="jd-req-intro">
-                    <h2>Requirements</h2>
-                    <ul>
-                      <li>
-                        Good understanding of developer and open-source
-                        communities
-                      </li>
-                      <li>
-                        Knowledge of and experience with popular databases,
-                        including SQL-based RDBMS, MongoDB and others
-                      </li>
-                      <li>
-                        Knowledge of the scientific Python ecosystem including
-                        Pandas, PyTorch, Scikit-Learn, Numpy, Tensorflow etc.
-                      </li>
-                      <li>
-                        Proficiency in Python and other relevant languages.
-                      </li>
-                      <li>
-                        In-depth experience building and applying AI, machine
-                        learning, data science, and MLOps.
-                      </li>
-                    </ul>
+                <div className="job-description my-6">
+                  <div className="jd-intro">
+                    {job?.description}
+                    <br />
+                    <br />
+                    {job?.description}
+                    <br />
+                  </div>
+                  <div className="jd-requirements my-6">
+                    <div className="jd-req-intro">
+                      <h2 className="font-bold">Requirements:</h2>
+                      <ul>
+                        <li>{job?.description}</li>
+                        <br />
+                        <br />
+                        <li>{job?.requirements}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="jd-benefits my-6">
+                    <div className="jd-benefits-intro">
+                      <h2 className="font-bold">Benefits:</h2>
+                      <p>{job?.benefits}</p>
+                      {/* <ul>
+                        {job?.benefits.map((benefit: string, index: number) => (
+                          <li key={index}>{benefit}</li>
+                        ))}
+                      </ul> */}
+                    </div>
                   </div>
                 </div>
-                <div className="jd-benefits my-6">
-                  <div className="jd-benefits-intro">
-                    <h2>Benefits</h2>
-                    <ul>
-                      <li>
-                        High-impact work with other highly-talented and skilled
-                        team members
-                      </li>
-                      <li>Competitive salary and stock options</li>
-                      <li>The choice between fully remote work and hybrid</li>
-                    </ul>
-                  </div>
-                </div>
+                <a className="font-bold md:text-2xl">
+                  <Button
+                    style="bg-indigo-500 text-white px-6 py-2 rounded-full flex justify-center"
+                    onClick={() => console.log("apply")}
+                    text="Apply for this job"
+                  />
+                </a>
               </div>
-              <a className="font-bold md:text-2xl">
-                <Button
-                  style="bg-indigo-500 text-white px-6 py-2 rounded-full flex justify-center"
-                  onClick={() => console.log("apply")}
-                  text="Apply for this job"
-                />
-              </a>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </main>

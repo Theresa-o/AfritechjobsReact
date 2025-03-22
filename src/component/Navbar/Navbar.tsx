@@ -4,7 +4,7 @@ import NavBarLinks from "./NavBarLinks";
 import MenuIcon from "../../assets/menu.svg";
 import CloseIcon from "../../assets/close.svg";
 import ReactIcon from "../../assets/react.svg";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,11 +48,13 @@ const Navbar = () => {
             <NavBarLinks />
           </ul>
           <div className="md:flex hidden">
-            <Button
-              style="bg-indigo-500 text-white px-6 rounded-full"
-              onClick={() => console.log("Create a form")}
-              text="POST A JOB"
-            />
+            <Link to="/add-job">
+              {" "}
+              <Button
+                style="bg-indigo-500 text-white px-6 rounded-full"
+                text="POST A JOB"
+              />
+            </Link>
           </div>
           {/* mobile nav view */}
           <ul
@@ -61,9 +63,9 @@ const Navbar = () => {
             } `}
           >
             <li>
-              <a href="/" className="py-7 px-3 inline-block">
+              <Link to="/add-job" className="py-7 px-3 inline-block">
                 Home
-              </a>
+              </Link>
             </li>
             <NavBarLinks />
             <div className="py-3">

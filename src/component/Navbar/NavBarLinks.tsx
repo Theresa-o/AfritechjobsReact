@@ -10,7 +10,7 @@ const NavBarLinks = () => {
         <div key={menu.id}>
           <div className="px-3 text-left cursor-pointer group ">
             <NavLink
-              to="/job"
+              to="/jobs"
               className={({ isActive }) =>
                 isActive
                   ? "py-7 flex justify-between md:pr-0 pr-5 group bg-indigo-500"
